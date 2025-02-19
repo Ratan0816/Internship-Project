@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4 d-flex flex-column align-items-center">
+    <h1 class="mb-4">Department Details</h1>
+    <div class="card" style="width: 24rem;">
+        <div class="card-header">
+            <h5 class="card-title text-center">{{ department.name }}</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>Description:</strong> {{ department.description }}</p>
+            <p class="card-text"><strong>Created At:</strong> {{ department.created_at }}</p>
+            <p class="card-text"><strong>Updated At:</strong> {{ department.updated_at }}</p>
+            <p class="card-text"><strong>Status:</strong> {{ department.status }}</p>
+            <div class="d-flex justify-content-between">
+                {% if user.is_staff %}
+                <a href="{% url 'department_update' department.pk %}" class="btn btn-warning">Edit</a>
+                <a href="{% url 'department_delete' department.pk %}" class="btn btn-danger">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'department_list' %}" class="btn btn-secondary mt-3">Back to List</a>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Role List</h1>
+<form method="GET" action="" class="mb-3">
+    <input type="text" name="q" class="form-control" placeholder="Search roles..." value="{{ request.GET.q }}">
+    <button type="submit" class="btn btn-primary mt-2">Search</button>
+</form>
+<div class="container">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>created_at</th>
+                <th>updated_at</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for role in roles %}
+            <tr>
+                <td><a href="{% url 'role_detail' role.pk %}">{{ role.r_name }}</a></td>
+                <td>{{ role.r_description }}</td>
+                <td>{{ role.r_created_at}}</td>
+                <td>{{ role.r_updated_at}}</td>
+                <td>{{ role.r_status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4 d-flex flex-column align-items-center">
+    <h1 class="mb-4">Role Details</h1>
+    <div class="card" style="width: 24rem;">
+        <div class="card-header">
+            <h5 class="card-title text-center">{{ role.r_name }}</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>Description:</strong> {{ role.r_description }}</p>
+            <p class="card-text"><strong>Created At:</strong> {{ role.r_created_at }}</p>
+            <p class="card-text"><strong>Updated At:</strong> {{ role.r_updated_at }}</p>
+            <p class="card-text"><strong>Status:</strong> {{ role.r_status }}</p>
+            <div class="d-flex justify-content-between">
+                {% if user.is_staff %}
+                <a href="{% url 'role_update' role.pk %}" class="btn btn-warning">Edit</a>
+                <a href="{% url 'role_delete' role.pk %}" class="btn btn-danger">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'role_list' %}" class="btn btn-secondary mt-3">Back to List</a>
+</div>
+{% endblock %}
